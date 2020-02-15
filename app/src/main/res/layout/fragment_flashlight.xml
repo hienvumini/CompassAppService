@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/mblack"
+    tools:context=".fragment.FragmentFlashlight">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:id="@+id/light"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/light"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/ctflashlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/light"
+        android:layout_centerInParent="true">
+
+        <RelativeLayout
+            android:id="@+id/flashligh_Flashlight"
+            android:layout_width="150dp"
+            android:layout_height="400dp">
+
+            <ImageView
+                android:id="@+id/flash_off_Flashlight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_light_body_off" />
+
+            <ImageView
+                android:id="@+id/flash_on_Flashlight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_light_body_on"
+                android:visibility="gone" />
+
+            <Switch
+                android:id="@+id/switch_Flashlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:rotation="-90"
+                android:track="@drawable/track_selector"
+                android:thumb="@drawable/thumb_selector"
+                />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:id="@+id/linelayoutSOS"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/botron"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="SOS"
+            android:textColor="@color/mwhite"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</RelativeLayout>

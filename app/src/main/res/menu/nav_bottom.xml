@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_nav_compass"
+        android:icon="@drawable/compass"
+        android:title="Compass"></item>
+    <item
+        android:id="@+id/menu_nav_map"
+        android:icon="@drawable/maps"
+        android:title="Maps"></item>
+    <item
+        android:id="@+id/menu_nav_forecast"
+        android:icon="@drawable/forcecast"
+        android:title="Forecast"></item>
+
+    <item
+        android:id="@+id/menu_nav_flashlight"
+        android:icon="@drawable/flashlight"
+        android:title="Flashlight"></item>
+
+</menu>

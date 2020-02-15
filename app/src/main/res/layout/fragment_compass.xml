@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mblack"
+    tools:context=".fragment.FragmentCompass">
+
+    <LinearLayout
+
+        android:id="@+id/ctheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Magnetic:"
+                android:textColor="@color/mwhite"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textviewmgnetic_Compass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00 μT"
+                android:textColor="@color/mwhite"
+                android:textSize="20sp" />
+
+            <LinearLayout
+
+                android:visibility="invisible"
+                android:id="@+id/linenerDirection_Compass"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DIRECTION"
+                    android:textColor="@color/mred"
+                    android:textSize="20sp" />
+
+                <TextView
+
+                    android:id="@+id/textviewDiriection_Compass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00°NE"
+                    android:textColor="@color/mred"
+                     />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/imageviewInfo_Compass"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/info" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <RelativeLayout
+        android:id="@+id/compass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ctheader"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+
+            android:id="@+id/ImageviewCompass_Compasss"
+            android:layout_width="@dimen/compass_size"
+            android:layout_height="@dimen/compass_size"
+
+
+            android:src="@drawable/compass2" />
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="@dimen/compass_size"
+            android:layout_height="@dimen/compass_size"
+            android:padding="100dp"
+            android:src="@drawable/ic_target" />
+        <ImageView
+            android:rotation="-90"
+            android:visibility="invisible"
+            android:id="@+id/imageviewDirection"
+            android:layout_centerInParent="true"
+            android:src="@drawable/arrow"
+            android:layout_width="250dp"
+            android:layout_height="290dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ct3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/compass"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <ImageView
+                android:id="@+id/imageviewlocation_Compass"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/flat_location_logo" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4">
+
+            <TextView
+                android:id="@+id/textviewHienthi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="86"
+                android:textColor="@color/mwhite"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/imageviewAngle_Compass"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/botron"
+                android:padding="5dp"
+                android:src="@drawable/angle" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="20dp"
+
+        android:orientation="horizontal"
+        android:layout_below="@id/ct3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:visibility="invisible"
+            android:id="@+id/seekbarAngle"
+            android:pointerIcon="all_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.FragmentMaps"
+    android:id="@+id/fragment_Map"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/ctheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mgreen"
+        android:orientation="vertical"
+
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/textviewLat_Map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00°0'00 N"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textviewDirection_Map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="00°NE"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textviewLon_Map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="00°0'00 E"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/mblack">
+
+
+            <com.github.shchurov.horizontalwheelview.HorizontalWheelView
+                android:id="@+id/hw"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                >
+
+            </com.github.shchurov.horizontalwheelview.HorizontalWheelView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ctfooter"
+        android:layout_below="@id/ctheader">
+
+        <fragment
+            android:id="@+id/map_Map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            tools:context="com.nextsol.currentplacedetailsonmap.MapsActivityCurrentPlace" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_target" />
+
+        <LinearLayout
+            android:id="@+id/linerPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:backgroundTint="@color/mwhite"
+                android:id="@+id/imageviewZomin_Map"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_zoom_in" />
+
+            <ImageView
+                android:id="@+id/imageviewZomout_Map"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_zoom_out" />
+
+            <ImageView
+                android:id="@+id/imageviewMode_Map"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_map_mode" />
+
+            <ImageView
+                android:id="@+id/imageviewGrid_Map"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_grid_mode" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/imageviewMyLocation_Map"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_my_location" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageviewShareMap_Map"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/ic_share_map" />
+
+        <ImageView
+            android:id="@+id/imageviewGridImage_Map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/grid"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ctfooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/mblacktrans1"
+        android:orientation="vertical">
+
+        <TextView
+            android:visibility="invisible"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textviewlocation_Maps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text=""
+            android:textColor="@color/mgreen" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/textviewTimeLocal_Map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="LOCAL: 00:00:00"
+                android:textColor="@color/mwhite" />
+
+            <TextView
+                android:id="@+id/textviewTimeGmt_Map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="GMT: 00:00:00"
+                android:textColor="@color/mwhite" />
+
+            <TextView
+                android:id="@+id/textviewdate_Map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TH 6 31.01.2020"
+                android:textColor="@color/mwhite" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/textviewCenterLat_Map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00°0,00"
+                android:textColor="@color/mwhite" />
+
+            <TextView
+                android:id="@+id/textviewCenterLon_Map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00°0,00"
+                android:textColor="@color/mwhite" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/textviewCenterLatDegree_Map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00°0'00 N"
+                android:textColor="@color/mwhite" />
+
+            <TextView
+                android:id="@+id/textviewCenterLonDegree_Map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00°0'00 E"
+                android:textColor="@color/mwhite" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

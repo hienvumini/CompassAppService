@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/nighttime"
+
+    tools:context=".fragment.FragmentForeCast"
+    android:id="@+id/Relcative_Forecast">
+
+    <ScrollView
+        android:visibility="invisible"
+        android:id="@+id/scollview_ForeCast"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+
+                android:id="@+id/ctToday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+                    android:id="@+id/imgReload_Maps"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/reload" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textviewCity_Forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+
+                        android:text="Local Name"
+                        android:textColor="@color/mwhite"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/textviewTimeupdate_Forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="Updated: Fri, 31 Jan 2020 14:24 GMT +07:00 Local time"
+                        android:textColor="@color/mwhite"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textviewDegree_Forecast"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="00°C"
+                                android:textColor="@color/mwhite"
+                                android:textSize="60sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textviewFeelslike_Forecast"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="15dp"
+                                android:text="Feels like 23"
+                                android:textColor="@color/mwhite" />
+
+                            <TextView
+                                android:id="@+id/textviewMinmaxTemp_ForeCast"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@id/textviewDegree_Forecast"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="15dp"
+                                android:text="Day 23 - Night 19"
+                                android:textColor="@color/mwhite" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:layout_centerInParent="true"
+                                android:id="@+id/imageviewIcon_ForeCast"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/i01d" />
+
+                            <TextView
+                                android:id="@+id/textviewStatus_Forecast"
+                                android:textSize="20sp"
+                                android:textColor="@color/mwhite"
+                                android:layout_centerHorizontal="true"
+                                android:text="Status"
+                                android:layout_below="@id/imageviewIcon_ForeCast"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                 />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Wind: "
+                                android:textColor="@color/mwhite"
+                                android:textSize="20dp" />
+
+                            <TextView
+                                android:id="@+id/textviewWindspeed_Forecast"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="00.0 km/h"
+                                android:textColor="@color/mwhite"
+                                android:textSize="20dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dir: "
+                                android:textColor="@color/mwhite"
+                                android:textSize="20dp" />
+
+                            <TextView
+                                android:id="@+id/textviewWindDir_Forecast"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="000.0°"
+                                android:textColor="@color/mwhite"
+                                android:textSize="20dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Humidity: "
+                            android:textColor="@color/mwhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/textviewHumidity_Forecast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="00.0%"
+                            android:textColor="@color/mwhite"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pressure: "
+                            android:textColor="@color/mwhite"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/textviewPressure_Forecast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="0000.00 mb"
+                            android:textColor="@color/mwhite"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+
+                        <TextView
+                            android:id="@+id/textviewVisibility_Forecast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="00000 (000.0 km)"
+                            android:textColor="@color/mwhite"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/recycleviewDays_ForeCast"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

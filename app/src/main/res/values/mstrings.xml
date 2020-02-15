@@ -1,0 +1,6 @@
+<resources>
+
+
+    <string name="calibratetitle">Calibrate the compass</string>
+    <string name="calibratedisc">If the sysbol 8 appears, it means that the accuracy of compass is not reliable. Calibrate your device by waving device in figure 8 motion.</string>
+</resources>

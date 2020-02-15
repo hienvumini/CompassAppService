@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/mwhite"
+    >
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_alignParentTop="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textStyle="bold"
+        android:textColor="@color/mblack"
+        android:text="Magnetic Field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textviewMagnetic_Compass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="μT"
+        android:textColor="@color/mblack" />
+
+</LinearLayout>
+    <ImageView
+        android:id="@+id/image_dial_Compass"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_centerInParent="true"
+
+        android:src="@drawable/compassimage" />
+
+    <ImageView
+        android:id="@+id/image_hands_Compass"
+        android:layout_width="20dp"
+        android:layout_height="220dp"
+        android:layout_centerInParent="true"
+
+        android:scaleType="fitXY"
+        android:src="@drawable/hands" />
+
+    <TextView
+        android:textColor="@color/mblack"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/image_dial_Compass"
+        android:id="@+id/textviewDir_Compass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
