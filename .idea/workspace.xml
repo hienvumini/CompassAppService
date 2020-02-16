@@ -12,17 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ed13fad-3615-423b-bdbd-aad79b04fa2d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CompassApp.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentCompass.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentCompass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentFlashlight.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentFlashlight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentForeCast.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentForeCast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentMaps.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentMaps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/view/ForecastWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/view/ForecastWidget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/view/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/view/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_fore_cast.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_fore_cast.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_maps.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +25,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="29ab695c9805" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_XL_API_22" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -55,24 +47,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentForeCast.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+            <state relative-caret-position="208">
+              <caret line="82" column="52" selection-start-line="82" selection-start-column="52" selection-end-line="82" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4996#8328#0" expanded="true" />
-                <element signature="e#8327#8328#0" expanded="true" />
-                <element signature="e#9642#12150#0" expanded="true" />
-                <element signature="e#12149#12150#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_fore_cast.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="244" column="52" selection-start-line="244" selection-start-column="52" selection-end-line="244" selection-end-column="52" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentMaps.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="-30">
+              <caret line="25" column="49" lean-forward="true" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -105,6 +103,7 @@
       <find>sharedPreferences</find>
       <find>ic_target</find>
       <find>listene</find>
+      <find>visi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -117,13 +116,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/view/ForecastWidget.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/styleprogress.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_fore_cast.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentMaps.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_maps.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/view/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentForeCast.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentCompass.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentFlashlight.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_fore_cast.xml" />
       </list>
     </option>
   </component>
@@ -203,7 +202,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -267,13 +268,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="29ab695c9805" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-16T12:38:29.761Z" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../CompassService" />
   </component>
@@ -378,7 +378,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32960597" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.32960597" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -393,15 +393,15 @@
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.329718" />
+      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Find" order="8" />
-      <window_info anchor="bottom" id="Android Profiler" order="9" weight="0.329718" />
-      <window_info anchor="right" id="Preview" weight="0.32960597" />
+      <window_info anchor="bottom" id="Android Profiler" order="9" show_stripe_button="false" weight="0.329718" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info active="true" anchor="right" id="Preview" order="5" visible="true" weight="0.32960597" />
     </layout>
   </component>
   <component name="editorHistoryManager">
@@ -448,13 +448,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/styleprogress.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="3" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/styleprogress.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -505,13 +499,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_fore_cast.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentFlashlight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+        <state relative-caret-position="30">
+          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentCompass.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -520,33 +513,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentFlashlight.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentMaps.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+        <state relative-caret-position="-30">
+          <caret line="25" column="49" lean-forward="true" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentForeCast.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+        <state relative-caret-position="208">
+          <caret line="82" column="52" selection-start-line="82" selection-start-column="52" selection-end-line="82" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4996#8328#0" expanded="true" />
-            <element signature="e#8327#8328#0" expanded="true" />
-            <element signature="e#9642#12150#0" expanded="true" />
-            <element signature="e#12149#12150#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nextsol/digitalcompass/fragment/FragmentMaps.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_fore_cast.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="171">
+          <caret line="244" column="52" selection-start-line="244" selection-start-column="52" selection-end-line="244" selection-end-column="52" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
   </component>
 </project>
