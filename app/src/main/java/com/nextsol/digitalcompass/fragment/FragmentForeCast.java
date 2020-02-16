@@ -3,24 +3,23 @@ package com.nextsol.digitalcompass.fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -36,20 +35,17 @@ import com.nextsol.digitalcompass.adapter.ForeCastAdapter;
 import com.nextsol.digitalcompass.api.OpenWeatherAPI;
 import com.nextsol.digitalcompass.model.Forecast;
 import com.nextsol.digitalcompass.model.IconForeCast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 
-public class FragmentForeCast extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+public final class FragmentForeCast extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     ImageView imageViewReload, imageViewIcon;
     TextView textViewCity, textViewUpdateTime, textViewDegree, textViewWindSpeed,
             textViewWindDir, textViewHumidity, textViewPressure,
@@ -68,8 +64,18 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
     public static final int CODE_FORECAST_TODAY = 901;
     public static final int CODE_FORECAST_5DAY = 902;
     ScrollView scrollView;
+    Runnable runnableUpdateForeCast;
+    Handler handlerupdateForeCast;
+    LatLng latLng;
+    Bundle bundletoday;
+    Bundle bundletodayreceive;
+    Bundle bundle5daysreceive;
+    Message messagetoday;
+    Forecast forecasttoday;
+    LinearLayout linearLayoutLoadingForeCast;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,23 +83,28 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
         view = inflater.inflate(R.layout.fragment_fore_cast, container, false);
 
         init(view);
-        listener(view);
-        if (NetWorkUltils.isNetworkConnected(getActivity())) {
-            init(view);
-            listener(view);
-            getAllInfoForeCast();
+        listener();
+        getAllInfoForeCast();
+        runnableUpdateForeCast = new Runnable() {
+            @Override
+            public void run() {
 
-        } else {
+                getAllInfoForeCast();
 
-            Toasty.error(getActivity(), "Internet was interup,\n Please check Wifi/Mobile Network").show();
-        }
+                handler.postDelayed(runnableUpdateForeCast, 600000);
+            }
+        };
+        handlerupdateForeCast = new Handler();
+        handlerupdateForeCast.postDelayed(runnableUpdateForeCast, 60000);
         return view;
     }
 
     private void getAllInfoForeCast() {
         if (NetWorkUltils.isNetworkConnected(getActivity())) {
-            getForecast(location.getLatitude(), location.getLongitude());
-            getGeoCast5Days(location.getLatitude(), location.getLongitude());
+            getForecast();
+            getGeoCast5Days();
+            relativeLayout.setTop(0);
+            scrollView.smoothScrollTo(0, 0);
 
 
         } else {
@@ -103,12 +114,28 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
     }
 
 
-    private void getForecast(final double lattitude, final double longtitude) {
+    private void getForecast() {
+
+        if (sharedPreferences != null) {
+            float latold = sharedPreferences.getFloat("lat", 21);
+            float lonold = sharedPreferences.getFloat("lon", 105);
+            latLng = new LatLng(latold, lonold);
+
+
+        } else {
+            latLng = new LatLng(21, 105);
+
+        }
+        double lat = latLng.latitude;
+        double lon = latLng.longitude;
+
         textViewUpdateTime.setVisibility(View.INVISIBLE);
+
+        linearLayoutLoadingForeCast.setVisibility(View.VISIBLE);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                OpenWeatherAPI.getPathAsGeo(lattitude, longtitude, 1), null,
+                OpenWeatherAPI.getPathAsGeo(lat, lon, 1), null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -138,22 +165,20 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
                                 }
                                 forecast.setTimeStamp(response.getLong("dt"));
                                 forecast.setCity(response.getString("name"));
-                                if (response.getString("visibility").length() == 0 || response.getString("visibility") == null) {
 
-                                    forecast.setVisibility(response.getLong("visibility"));
-
-                                } else {
-                                    forecast.setVisibility(-1);
-
-                                }
 
                                 calendar = Calendar.getInstance();
                                 textViewUpdateTime.setVisibility(View.VISIBLE);
                                 textViewUpdateTime.setText(FormatDate.formatDate(FormatDate.simpleformat1, calendar) + " Local Time");
                                 //gui di forecat
-                                Message messagetoday = new Message();
-                                messagetoday.what=CODE_FORECAST_TODAY;
-                                Bundle bundletoday = new Bundle();
+
+                                messagetoday = new Message();
+
+
+                                messagetoday.what = CODE_FORECAST_TODAY;
+                                if (bundletoday == null) {
+                                    bundletoday = new Bundle();
+                                }
                                 bundletoday.putSerializable("forecastToday", (Serializable) forecast);
                                 messagetoday.setData(bundletoday);
                                 handler.sendMessage(messagetoday);
@@ -173,23 +198,27 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
 
 
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("lat", lattitude + "");
-                params.put("lon", longtitude + "");
-
-                return params;
-            }
-        };
+        });
         requestQueue.add(jsonObjectRequest);
 
     }
 
-    public void getGeoCast5Days(final double lattitude, final double longtitude) {
+    public void getGeoCast5Days() {
+        if (sharedPreferences != null) {
+            float latold = sharedPreferences.getFloat("lat", 21);
+            float lonold = sharedPreferences.getFloat("lon", 105);
+            latLng = new LatLng(latold, lonold);
+
+
+        } else {
+            latLng = new LatLng(21, 105);
+
+        }
+        final double lat = latLng.latitude;
+        final double lon = latLng.longitude;
+
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, OpenWeatherAPI.getPathAsGeo5Days(lattitude, longtitude, 1), null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, OpenWeatherAPI.getPathAsGeo5Days(lat, lon, 1), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 if (response != null) {
@@ -217,10 +246,10 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
                                     listForeCastDays.add(forecast);
                                 }
                             }
-                            Message message=new Message();
-                            message.what=CODE_FORECAST_5DAY;
-                            Bundle bundle5day=new Bundle();
-                            bundle5day.putSerializable("forecast5days",listForeCastDays);
+                            Message message = new Message();
+                            message.what = CODE_FORECAST_5DAY;
+                            Bundle bundle5day = new Bundle();
+                            bundle5day.putSerializable("forecast5days", listForeCastDays);
                             message.setData(bundle5day);
                             handler.sendMessage(message);
 
@@ -240,33 +269,32 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
             public void onErrorResponse(VolleyError error) {
 
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("lat", lattitude + "");
-                map.put("lon", longtitude + "");
-                return map;
-            }
-        };
+        });
         requestQueue.add(jsonObjectRequest);
 
     }
 
-    private void listener(View view) {
+    private void listener() {
         imageViewReload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getForecast(location.getLatitude(), location.getLongitude());
-                getGeoCast5Days(location.getLatitude(), location.getLongitude());
+
+                scrollView.setVisibility(View.INVISIBLE);
+                getAllInfoForeCast();
+
+
+
 
             }
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void init(View view) {
-        scrollView=(ScrollView)  view.findViewById(R.id.scollview_ForeCast);
+
+        scrollView = (ScrollView) view.findViewById(R.id.scollview_ForeCast);
         relativeLayout = (RelativeLayout) view.findViewById(R.id.Relcative_Forecast);
+        linearLayoutLoadingForeCast = (LinearLayout) view.findViewById(R.id.linerLayoutLoading_ForeCast);
         if (isNight()) {
             relativeLayout.setBackgroundResource(R.drawable.night_sky);
 
@@ -312,22 +340,30 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
         handler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
-                switch (msg.what){
+                switch (msg.what) {
                     case CODE_FORECAST_TODAY:
-                        Bundle bundletoday=msg.getData();
-                        Forecast forecasttoday= (Forecast) bundletoday.getSerializable("forecastToday");
-                        if (forecasttoday!=null){
+                        bundletodayreceive = msg.getData();
+                        if (forecasttoday == null) {
+                            forecasttoday = (Forecast) bundletodayreceive.getSerializable("forecastToday");
+                        }
+                        if (forecasttoday != null) {
                             setInfoForecastToday(forecasttoday);
                         }
+                        scrollView.scrollTo(view.getTop(), view.getRight());
                         scrollView.setVisibility(View.VISIBLE);
+                        linearLayoutLoadingForeCast.setVisibility(View.INVISIBLE);
+
 
                         break;
                     case CODE_FORECAST_5DAY:
-                        Bundle bundle5days=msg.getData();
-                        listForeCastDays=new ArrayList<>();
-                        listForeCastDays= (ArrayList<Forecast>) bundle5days.getSerializable("forecast5days");
-                        if (listForeCastDays.size()>0){
-                            foreCastAdapter = new ForeCastAdapter(getActivity(), R.id.recycleviewDays_ForeCast, listForeCastDays);
+                        bundle5daysreceive = msg.getData();
+                        listForeCastDays = new ArrayList<>();
+                        listForeCastDays = (ArrayList<Forecast>) bundle5daysreceive.getSerializable("forecast5days");
+                        if (listForeCastDays.size() > 0) {
+                            if (foreCastAdapter == null) {
+                                foreCastAdapter = new ForeCastAdapter(getActivity(), R.id.recycleviewDays_ForeCast, listForeCastDays);
+
+                            }
                             recyclerViewDays.setAdapter(foreCastAdapter);
                         }
 
@@ -350,6 +386,7 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
     @Override
     public void onStart() {
         super.onStart();
+
     }
 
     @Override
@@ -361,6 +398,7 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
     @Override
     public void onPause() {
         super.onPause();
+
     }
 
     @Override
@@ -372,8 +410,8 @@ public class FragmentForeCast extends Fragment implements SharedPreferences.OnSh
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        getForecast(location.getLatitude(), location.getLongitude());
-        getGeoCast5Days(location.getLatitude(), location.getLongitude());
+        getForecast();
+        getGeoCast5Days();
 
     }
 

@@ -1,38 +1,28 @@
 package com.nextsol.digitalcompass.fragment;
 
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.fragment.app.Fragment;
-
 import com.nextsol.digitalcompass.R;
 import com.nextsol.digitalcompass.Utils.SOTWFormatter;
 import com.nextsol.digitalcompass.model.Compass;
 
 
-public class FragmentCompass extends Fragment {
+public final class FragmentCompass extends Fragment {
     private static final String TAG = "CompassActivity";
 
-    private Compass compass;
-    private ImageView imageViewarrowView, imageViewDial;
-    private float currentAzimuth;
-    private SOTWFormatter sotwFormatter;
-    TextView textViewDgree, textViewMagnetic;
+    private static Compass compass;
+    private static ImageView imageViewarrowView, imageViewDial;
+    private static float currentAzimuth;
+    private static SOTWFormatter sotwFormatter;
+    public static TextView textViewDgree, textViewMagnetic;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -43,34 +43,42 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 
-public class FragmentMaps extends Fragment implements OnMapReadyCallback,
+public final class FragmentMaps extends Fragment implements OnMapReadyCallback,
         View.OnClickListener {
-    FrameLayout frameLayoutMaps;
-    GoogleMap map;
-    LatLng center;
-    TextView textViewLatCenter, textViewLonCenter, textViewLatCenterDegree,
+    static FrameLayout frameLayoutMaps;
+    static GoogleMap map;
+    static LatLng center;
+    static TextView textViewLatCenter, textViewLonCenter, textViewLatCenterDegree,
             textViewLonCenterDegree, textViewTimeLocal, textViewTimeGmt,
             textViewDate, textViewLat, textViewLon, textViewAddress, textViewDirection;
-    ImageView imageViewZomin, imageViewZomout, imageViewMode, imageViewGrid,
+    static ImageView imageViewZomin, imageViewZomout, imageViewMode, imageViewGrid,
             imageViewLocation, imageViewShare, imageViewGridImage, imageViewTarget;
-    String string_lat = "";
-    String string_lon = "";
+    static String string_lat = "";
+    static String string_lon = "";
     double lat = 0;
     double lon = 0;
-    ArrayList<Integer> listmode;
-    int mode = 3;
+    static ArrayList<Integer> listmode;
+    static int mode = 3;
     boolean enableGrid = false;
-    Location location;
-    HorizontalWheelView horizontalWheelView;
-    public Compass compass;
+    static Location location;
+    static HorizontalWheelView horizontalWheelView;
+    public static Compass compass;
 
     public float currentAzimuth;
-    public SOTWFormatter sotwFormatter;
-    SharedPreferences sharedPreferences;
-    View view;
-    Handler handler;
+    public static SOTWFormatter sotwFormatter;
+    static SharedPreferences sharedPreferences;
+    static View view;
+    static Handler handlerupdateviewAddress, handlertimemer;
     public static final int CODE_GET_ADDRESS_MESAGE = 1001;
     public static final int CODE_GET_MY_LOCATION = 1002;
+    static Bundle bundle;
+    static LatLng latLng;
+    Runnable runnableTimer;
+
+    Calendar calendar;
+    SimpleDateFormat simpleDateFormat;
+    SimpleDateFormat simpleDateFormat1;
+    Date currentTime ;
 
 
 
@@ -113,6 +121,7 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback,
         imageViewGrid.setOnClickListener(this);
         imageViewLocation.setOnClickListener(this);
         imageViewShare.setOnClickListener(this);
+        imageViewTarget=(ImageView) view.findViewById(R.id.imageviewTarget_Maps);
         listmode = new ArrayList<>();
         listmode.add(GoogleMap.MAP_TYPE_SATELLITE);
         listmode.add(GoogleMap.MAP_TYPE_HYBRID);
@@ -130,7 +139,7 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback,
         location = new Location("");
         location.setLatitude(sharedPreferences.getFloat("lat", 21));
         location.setLongitude(sharedPreferences.getFloat("lon", 105));
-        handler = new Handler(new Handler.Callback() {
+        handlerupdateviewAddress = new Handler(new Handler.Callback() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public boolean handleMessage(@NonNull Message msg) {
@@ -138,20 +147,20 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback,
                 switch (msg.what) {
                     case CODE_GET_ADDRESS_MESAGE:
 
-                        Bundle bundle = msg.getData();
-                        LatLng latLng = bundle.getParcelable("latlng");
+                        bundle = msg.getData();
+                        latLng = bundle.getParcelable("latlng");
                         if (latLng != null) {
                             getAddressCenterPoint(latLng.latitude, latLng.longitude);
                         }
                         break;
                     case CODE_GET_MY_LOCATION:
-                        Bundle bundle2 = msg.getData();
-                        LatLng latLng2 = bundle2.getParcelable("latlng");
-                        if (latLng2 != null) {
-                            Location location2=new Location("");
-                            location.setLatitude(latLng2.latitude);
-                            location.setLongitude(latLng2.longitude);
-                           ZoomtoMyLocation(location2);
+                        bundle = msg.getData();
+                        latLng = bundle.getParcelable("latlng");
+                        if (latLng != null) {
+                            Location location2 = new Location("");
+                            location.setLatitude(latLng.latitude);
+                            location.setLongitude(latLng.longitude);
+                            ZoomtoMyLocation(location2);
                         }
                         break;
 
@@ -161,7 +170,28 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback,
                 return false;
             }
         });
+        handlertimemer = new Handler();
+        runnableTimer = new Runnable() {
+            @Override
+            public void run() {
+                UpdateTime();
+                handlertimemer.postDelayed(runnableTimer,1000);
+            }
+        };
+        handlertimemer.postDelayed(runnableTimer, 1000);
 
+    }
+
+    private void UpdateTime() {
+         calendar = Calendar.getInstance();
+         simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.US);
+         simpleDateFormat1 = new SimpleDateFormat("E dd.LL.yyyy", Locale.US);
+         currentTime = new Date();
+        textViewTimeLocal.setText(simpleDateFormat.format(calendar.getTime()));
+        textViewDate.setText(simpleDateFormat1.format(calendar.getTime()));
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+        textViewTimeGmt.setText(simpleDateFormat.format(currentTime.getTime()));
     }
 
 
@@ -175,7 +205,7 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback,
         googleMap.getUiSettings().setMyLocationButtonEnabled(true);
         googleMap.setMinZoomPreference(1);
 
-        if (location!=null){
+        if (location != null) {
 
             ZoomtoMyLocation(location);
         }
@@ -192,7 +222,8 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback,
                 Message message = new Message();
                 message.what = CODE_GET_ADDRESS_MESAGE;
                 message.setData(bundle);
-                handler.sendMessage(message);
+                handlerupdateviewAddress.sendMessage(message);
+                imageViewTarget.setVisibility(View.VISIBLE);
 
 
             }
@@ -214,14 +245,7 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback,
             textViewLon.setText(string_lon);
             textViewAddress.setText(MapUtils.getCompleteAddressString(getActivity(), lat, lon));
             textViewAddress.setVisibility(View.VISIBLE);
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.US);
-            SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("E dd.LL.yyyy", Locale.US);
-            textViewTimeLocal.setText(simpleDateFormat.format(calendar.getTime()));
-            textViewDate.setText(simpleDateFormat1.format(calendar.getTime()));
-            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-            Date currentTime = new Date();
-            textViewTimeGmt.setText(simpleDateFormat.format(currentTime.getTime()));
+
         } else {
             textViewAddress.setText("Internet was Interup, Please check connection!");
             textViewAddress.setTextColor(getActivity().getResources().getColor(R.color.mred));
@@ -262,6 +286,7 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback,
                 if (location != null) {
                     ZoomtoMyLocation(location);
                     getAddressCenterPoint(location.getLatitude(), location.getLongitude());
+                    imageViewTarget.setVisibility(View.INVISIBLE);
                 }
                 break;
             case R.id.imageviewShareMap_Map:
@@ -351,6 +376,13 @@ public class FragmentMaps extends Fragment implements OnMapReadyCallback,
     public void onStop() {
         super.onStop();
         compass.stop();
+
+    }
+
+    @Override
+    public void onLowMemory() {
+        getActivity().finish();
+        super.onLowMemory();
 
     }
 }
